@@ -6,7 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="GooglePhotosApiModels.fs" />
+    <None Include="App.config" />
+    <Compile Include="GoogleApiModels.fs" />
     <Compile Include="GoogleApiRequest.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

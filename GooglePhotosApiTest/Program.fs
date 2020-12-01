@@ -5,7 +5,7 @@ open System.Net.Http
 open GoogleApiRequest
 open SixLabors.ImageSharp;
 open System.IO
-open GooglePhotosApiModels
+open GoogleApiModels.Photos
 open FSharp.Json
 
 let createImageMediaItem(path: string) =
@@ -37,9 +37,7 @@ let createAlbum() =
     let requestContent = new StringContent(Json.serialize request)
     authorizedPostRequest "https://photoslibrary.googleapis.com/v1/albums" requestContent
 
-[<EntryPoint>]
-let main argv =
-    printfn "Quote uploader"
+let uploadPicturesTest() =
     [
         "C:\Users\CalebsLaptop\Pictures\BSULogo.png"
         "C:\Users\CalebsLaptop\Pictures\GimpExperiments\TestQuote1.png"
@@ -50,10 +48,19 @@ let main argv =
     |> Async.Sequential
     |> Async.RunSynchronously
     |> printfn "Response %A"
-    //"https://photoslibrary.googleapis.com/v1/mediaItems"
-    //|> printRequest
-    //|> Async.RunSynchronously
-    0 // return an integer exit code
+
+let getAlbumsTest() = 
+    getAlbums()
+    |> Async.RunSynchronously
+    |> printfn "Response %A"
+
+[<EntryPoint>]
+let main argv =
+    printfn "Quote uploader"
+    getAlbumsTest()
+    Console.ReadLine() |> ignore
+    getAlbumsTest()
+    0
 
 
 
